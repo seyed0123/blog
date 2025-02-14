@@ -1,0 +1,6 @@
+Pillow
+Django
+djangorestframework
+djangorestframework-simplejwt
+psycopg
+drf-yasg

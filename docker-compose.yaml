@@ -1,0 +1,33 @@
+
+services:
+  db:
+    image: postgres:bullseye
+    environment:
+      POSTGRES_DB: blog
+      POSTGRES_USER: seyed
+      POSTGRES_PASSWORD: qwe!@#poi
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: ./
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.filter(username='seyed').exists() or User.objects.create_superuser('seyed', 'seyed123ali123@gmail.com', '!@#qweasdzxc')\" | python manage.py shell &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/static
+      - media_volume:/app/media
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
