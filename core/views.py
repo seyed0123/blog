@@ -14,6 +14,11 @@ from rest_framework import status
 from .serializers import *
 
 
+"""
+Pleaseeeeeee never use functions for APIs again:)))))
+"""
+
+
 @swagger_auto_schema(
     methods=['post'],
     manual_parameters=[
@@ -50,7 +55,7 @@ def create_user(request):
     responses={204: "User account deleted successfully."},
     security=[{'Bearer': []}],
 )
-@api_view(['DELETE', 'PUT'])
+@api_view(['DELETE', 'PUT'])  # Never use put method in django. You have patch method for this and this is much optimize.
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 def user_detail(request):
@@ -131,7 +136,7 @@ def post_list(request):
 @authentication_classes([JWTAuthentication])
 @permission_classes([IsAuthenticated])
 def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    post = get_object_or_404(Post, pk=pk)  # why not try except?
     if request.method == 'GET':
         serializer = PostSerializer(post)
         return JsonResponse(serializer.data)
@@ -169,7 +174,7 @@ def post_detail(request, pk):
 @permission_classes([IsAuthenticated])
 def category_list(request):
     if request.method == 'GET':
-        categories = Category.objects.all()
+        categories = Category.objects.all()  # where is pagination brother?:)
         serializer = CategorySerializer(categories, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':

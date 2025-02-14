@@ -1,0 +1,5 @@
+When you are working on a project you need to use .env to store information like database username and password.
+This is better to distinct the user and other models except in situations that they are so relative.
+To get requirement.txt you can use pip freeze that give you the versions that are using in the project too.
+To have a better structure for responses usually use functions like success_response and error_responses that handle pagination too.
+You need another end point like get-me that returns the details of a user.(This is used for a profile page in frontend)

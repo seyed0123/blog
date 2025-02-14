@@ -3,6 +3,7 @@ services:
   db:
     image: postgres:bullseye
     environment:
+      # These information must be in a file like .env and read from that.
       POSTGRES_DB: blog
       POSTGRES_USER: seyed
       POSTGRES_PASSWORD: qwe!@#poi
