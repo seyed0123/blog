@@ -4,7 +4,13 @@ from django.conf import settings
 
 
 # Create your models here.
-class Bolg_User(AbstractUser):
+
+"""
+This is better to set blank=True/False and null=True/False for all of the fields.
+"""
+
+
+class Bolg_User(AbstractUser):  # name of models must be start with capital and does not contain _.
     bio = models.TextField(blank=True, null=True)
     profile_picture = models.ImageField(upload_to='media/profile_pics/', blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
@@ -23,7 +29,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # why in this way?
     image = models.ImageField(upload_to='media/post_images/', blank=True, null=True)
     categories = models.ManyToManyField(Category, related_name='posts')
     created_at = models.DateTimeField(auto_now_add=True)

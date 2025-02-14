@@ -35,7 +35,7 @@ class BlogUserSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name']
+        fields = ['id', 'name']  # you can use all that if you change the model does not need to change the serializer
 
 
 class PostSerializer(serializers.ModelSerializer):

@@ -96,6 +96,9 @@ WSGI_APPLICATION = "bolg.wsgi.application"
 
 DATABASES = {
     'default': {
+        """
+        These information must be saved in a file like .env.
+        """
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'blog',
         'USER': 'seyed',
